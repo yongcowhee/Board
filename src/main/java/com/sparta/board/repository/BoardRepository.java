@@ -11,7 +11,4 @@ public interface BoardRepository {
     Board findById(Long id);
 
     void deleteById(Long id);
-
-    void modify(Board findBoard, Board inputBoard);
-
 }

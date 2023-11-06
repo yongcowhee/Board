@@ -1,8 +1,6 @@
 package com.sparta.board.controller;
 import com.sparta.board.domain.Board;
-import com.sparta.board.dto.BoardCreateRequestDto;
-import com.sparta.board.dto.BoardCreateResponseDto;
-import com.sparta.board.dto.BoardFindResponseDto;
+import com.sparta.board.dto.*;
 import com.sparta.board.service.BoardService;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,9 +55,14 @@ public class BoardController {
         return boardFindResponseDtoList;
     }
 
-    @DeleteMapping("/board/{id}")
-    public void removeBoard(@PathVariable Long id, @RequestBody String password){
-        boardService.removeBoard(id, password);
+    @DeleteMapping("/board")
+    public void removeBoard(@RequestBody BoardDeleteRequestDto boardDeleteRequestDto){
+        boardService.removeBoard(boardDeleteRequestDto);
     }
 
+    @PatchMapping("/board/{id}")
+    public void modifyBoard(@PathVariable Long id,
+                            @RequestBody BoardModifyRequestDto boardModifyRequestDto){
+        boardService.modifyBoard(id, boardModifyRequestDto);
+    }
 }
